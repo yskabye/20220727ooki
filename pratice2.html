@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app" v-bind:style="styleBkClr">
+  <button v-on:click.self="showOn">開く</button>
+  <div v-bind:style="styleDsp" class="dialog">
+    <p>モーダルウィンドウ</p>
+    <button v-on:click.self="showOff">閉じる</button>
+  </div>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data:{
+      styleDsp: { display: 'none' },
+      styleBkClr: {background: 'white'},
+    },
+    methods: {
+      showOff: function () {
+        this.styleDsp = {display: 'none'} ;
+        this.styleBkClr = { background: 'white' };
+      },
+      showOn: function () {
+        this.styleDsp = {display: "block"};
+        this.styleBkClr = {background: "#e0e0e0"} ;
+      }
+    },
+  })
+</script>
+<style>
+  body{
+    height: 100%;
+    margin: 0;
+  }
+
+  #app{
+    background: #e0e0e0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0 ;
+    left: 10px;
+    padding: 5px 5px;
+    margin: 0;
+  }
+
+  .dialog {
+    padding : 20px 50px;
+    background: white;
+    margin: 0 auto;
+    text-align: center;
+    width: 300px;
+    height: 100px;
+    top: calc(50% - 50px) ;
+    left: calc(50% - 150px);
+    position: absolute;
+  }
+
+  .dialog p{
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+  }
+
+</style>
+
+</body>
+
+</html>

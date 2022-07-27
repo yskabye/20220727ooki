@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <input type="text" v-model="keyword">
+    <div v-for="item in getList">
+        <p>{{ item }}</p>
+    </div>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data:{
+      names: [
+        '佐藤',
+        '山田',
+        '鈴木',
+        '田中',
+      ],
+      keyword: '',
+    },
+    computed:{
+      getList: function(){
+        items = new Array() ;
+
+        this.names.forEach( item =>{
+          if (this.keyword.length > 0) {
+            if (item.indexOf(this.keyword) >= 0) {
+              items.push(item); 
+            }
+          }else{
+            items.push(item); 
+          }
+        });
+
+        return items;
+      }
+    }
+  })
+</script>
+<style>
+  *{
+    font-size: 20px;
+  }
+
+  input{
+    border: 2px lightgreen solid ;
+    border-radius: 5px;
+    outline: none;
+  }
+
+  p{
+    margin: 0px;
+  }
+
+</style>
+
+</body>
+
+</html>

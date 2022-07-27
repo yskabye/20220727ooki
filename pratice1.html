@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button v-bind:class="[selno == 1 ? 'tabselect': 'tabnoselect']" @click="setTab(1)">1</button>
+    <button v-bind:class="[selno == 2 ? 'tabselect': 'tabnoselect']" @click="setTab(2)">2</button>
+    <button v-bind:class="[selno == 3 ? 'tabselect': 'tabnoselect']" @click="setTab(3)">3</button>
+    <p>{{ selno }}</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        selno: 0,
+      },
+      methods: {
+        setTab: function (index) {
+          this.selno = index;
+        }
+      },
+      created() {
+        this.selno = 1;
+      }
+    })
+  </script>
+  <style>
+    .tabselect {
+      font-size: 20px;
+      padding: 5px 50px;
+      border: 1px #d0d0d0 solid;
+      background: black;
+      color: white;
+    }
+
+    .tabnoselect {
+      font-size: 20px;
+      padding: 5px 50px;
+      border: 1px #d0d0d0 solid;
+      background: white;
+      color: black;
+    }
+
+    .tabselect::before, .tabnoselect::before {
+      content: "タブ";
+    }
+
+    p {
+      font-size: 20px;
+      color: black;
+      margin: 0;
+    }
+
+    p::before {
+      content: "コンテンツ";
+    }
+  </style>
+
+</body>
+
+</html>
