@@ -10,69 +10,78 @@
 </head>
 
 <body>
-<div id="app" v-bind:style="styleBkClr">
-  <button v-on:click.self="showOn">開く</button>
-  <div v-bind:style="styleDsp" class="dialog">
-    <p>モーダルウィンドウ</p>
-    <button v-on:click.self="showOff">閉じる</button>
+  <div id="app">
+    <button v-on:click.self="showOn">開く</button>
+    <div v-bind:style="styleDsp" class="dialog" v-on:click.self="showOff">
+      <div class="dialog_body">
+        <p>モーダルウィンドウ</p>
+        <button v-on:click.self="showOff">閉じる</button>
+      </div>
+    </div>
   </div>
-</div>
 
-<script>
-  new Vue({
-    el: '#app',
-    data:{
-      styleDsp: { display: 'none' },
-      styleBkClr: {background: 'white'},
-    },
-    methods: {
-      showOff: function () {
-        this.styleDsp = {display: 'none'} ;
-        this.styleBkClr = { background: 'white' };
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        styleDsp: { display: 'none' },
       },
-      showOn: function () {
-        this.styleDsp = {display: "block"};
-        this.styleBkClr = {background: "#e0e0e0"} ;
-      }
-    },
-  })
-</script>
-<style>
-  body{
-    height: 100%;
-    margin: 0;
-  }
+      methods: {
+        showOff: function () {
+          this.styleDsp = { display: 'none' };
+        },
 
-  #app{
-    background: #e0e0e0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0 ;
-    left: 10px;
-    padding: 5px 5px;
-    margin: 0;
-  }
+        showOn: function () {
+          this.styleDsp = { display: "block" };
+        }
+      },
+    })
+  </script>
+  <style>
+    body {
+      height: 100%;
+      margin: 0;
+    }
 
-  .dialog {
-    padding : 20px 50px;
-    background: white;
-    margin: 0 auto;
-    text-align: center;
-    width: 300px;
-    height: 100px;
-    top: calc(50% - 50px) ;
-    left: calc(50% - 150px);
-    position: absolute;
-  }
+    #app {
+      position: relative;
+      background: white;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 10px;
+      padding: 5px 5px;
+      margin: 0;
+      width: 100%;
+    }
 
-  .dialog p{
-    font-size: 16px;
-    font-weight: bold;
-    padding: 5px;
-  }
+    .dialog {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgb(220, 220, 220, 0.35);
+      width: 100%;
+      height: 100%;
+    }
 
-</style>
+    .dialog_body {
+      position: absolute;
+      top: calc(50% - 50px);
+      left: calc(50% - 150px);
+      padding: 20px 50px;
+      background: white;
+      margin: 0 auto;
+      text-align: center;
+      width: 300px;
+      height: 100px;
+    }
+
+    .dialog_body p {
+      font-size: 16px;
+      font-weight: bold;
+      padding: 5px;
+    }
+  </style>
 
 </body>
 
